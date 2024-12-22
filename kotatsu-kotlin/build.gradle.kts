@@ -1,9 +1,14 @@
 plugins {
     kotlin("jvm") version "2.0.21"
+    `java-library`
+    `maven-publish`
+    signing
 }
 
-group = "com.bethibande.kotatsu"
-version = "1.0"
+group = "com.bethibande"
+version = "21.1"
+
+description = "Kotlin utilities needed to use the kotatsu-parsers library."
 
 repositories {
     mavenCentral()
@@ -26,6 +31,71 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
 kotlin {
     jvmToolchain(21)
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+
+            versionMapping {
+                usage("java-api") {
+                    fromResolutionOf("runtimeClasspath")
+                }
+                usage("java-runtime") {
+                    fromResolutionResult()
+                }
+            }
+
+            pom {
+                name = project.name
+                description = project.description
+
+                url = "https://github.com/Bethibande/kotatsu-java-stub"
+
+                licenses {
+                    license {
+                        name = "GPL-3.0"
+                        url = "https://raw.githubusercontent.com/Bethibande/kotatsu-java-stub/refs/heads/master/LICENSE"
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = "bethibande"
+                        name = "Max Bethmann"
+                        email = "bethibande@gmail.com"
+                    }
+                }
+
+                scm {
+                    connection = "scm:git:git://github.com/Bethibande/kotatsu-java-stub.git"
+                    developerConnection = "scm:git:ssh://github.com/Bethibande/kotatsu-java-stub.git"
+                    url = "https://github.com/Bethibande/kotatsu-java-stub"
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "Github"
+            url = uri("https://maven.pkg.github.com/Bethibande/kotatsu-java-stub")
+            credentials {
+                username = providers.gradleProperty("githubUsername").get()
+                password = providers.gradleProperty("githubToken").get()
+            }
+        }
+    }
+}
+
+signing {
+    sign(publishing.publications["maven"])
 }
