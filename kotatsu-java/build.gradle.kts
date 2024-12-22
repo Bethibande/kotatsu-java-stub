@@ -78,11 +78,11 @@ publishing {
 
     repositories {
         maven {
-            name = "Github"
-            url = uri("https://maven.pkg.github.com/Bethibande/kotatsu-java-stub")
+            name = "Maven-Releases"
+            url = uri("https://pckg.bethibande.com/repository/maven-releases/")
             credentials {
-                username = providers.gradleProperty("githubUsername").get()
-                password = providers.gradleProperty("githubToken").get()
+                username = providers.gradleProperty("mavenUsername").get()
+                password = providers.gradleProperty("mavenPassword").get()
             }
         }
     }
