@@ -11,8 +11,11 @@ import okhttp3.ResponseBody.Companion.toResponseBody
 import org.koitharu.kotatsu.parsers.MangaLoaderContext
 import org.koitharu.kotatsu.parsers.bitmap.Bitmap
 import org.koitharu.kotatsu.parsers.config.MangaSourceConfig
+import org.koitharu.kotatsu.parsers.model.MangaParserSource
 import org.koitharu.kotatsu.parsers.model.MangaSource
+import org.koitharu.kotatsu.parsers.network.OkHttpWebClient
 import org.koitharu.kotatsu.parsers.network.UserAgents
+import org.koitharu.kotatsu.parsers.network.WebClient
 import org.koitharu.kotatsu.parsers.util.requireBody
 import java.awt.image.BufferedImage
 import java.util.concurrent.TimeUnit
@@ -60,4 +63,9 @@ class MangaLoaderContextImpl : MangaLoaderContext() {
     override fun createBitmap(width: Int, height: Int): Bitmap {
         return BitmapImpl(BufferedImage(width, height, BufferedImage.TYPE_INT_RGB))
     }
+
+    fun newWebClient(source: MangaParserSource): WebClient {
+        return OkHttpWebClient(httpClient, source)
+    }
+
 }
