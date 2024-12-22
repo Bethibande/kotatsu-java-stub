@@ -12,8 +12,8 @@ repositories {
 }
 
 dependencies {
-    implementation("com.bethibande:kotatsu-kotlin:21.1")
-    implementation("com.bethibande:kotatsu-java:21.1")
+    implementation("com.bethibande:kotatsu-kotlin:21.2")
+    implementation("com.bethibande:kotatsu-java:21.2")
 }
 ```
 
