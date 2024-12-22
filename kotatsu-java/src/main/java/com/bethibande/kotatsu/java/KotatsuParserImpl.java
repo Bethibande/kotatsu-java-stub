@@ -9,15 +9,26 @@ import org.koitharu.kotatsu.parsers.config.ConfigKey.Domain;
 import org.koitharu.kotatsu.parsers.config.MangaSourceConfig;
 import org.koitharu.kotatsu.parsers.model.*;
 
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * The main implementation of {@link KotatsuParser}.
  * This class delegates all of its methods to an internal instance of {@link MangaParser}.
  */
 public class KotatsuParserImpl implements KotatsuParser {
+
+    private static final ReentrantLock LOCK = new ReentrantLock();
+    private static final Map<MangaParserSource, KotatsuParser> PARSERS = new WeakHashMap<>();
+
+    public static KotatsuParser getInstance(MangaParserSource source) {
+        LOCK.lock();
+        try {
+            return PARSERS.computeIfAbsent(source, KotatsuParserImpl::new);
+        } finally {
+            LOCK.unlock();
+        }
+    }
 
     private final MangaParser parser;
 

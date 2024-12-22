@@ -19,8 +19,8 @@ import java.util.Set;
  */
 public interface KotatsuParser {
 
-    static KotatsuParser newInstance(final MangaParserSource source) {
-        return new KotatsuParserImpl(source);
+    static KotatsuParser of(final MangaParserSource source) {
+        return KotatsuParserImpl.getInstance(source);
     }
 
     static KotatsuParser withRateLimit(final RateLimits rateLimits, final KotatsuParser delegate) {
@@ -62,5 +62,5 @@ public interface KotatsuParser {
     MangaParserSource getSource();
 
     Locale getSourceLocale();
-    
+
 }

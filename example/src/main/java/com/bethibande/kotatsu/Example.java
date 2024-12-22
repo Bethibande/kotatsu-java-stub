@@ -12,7 +12,7 @@ import java.util.List;
 public class Example {
 
     private static KotatsuParser createParser(final MangaParserSource source) {
-        final KotatsuParser parser = KotatsuParser.newInstance(source);
+        final KotatsuParser parser = KotatsuParser.of(source);
         final RateLimits rateLimits = RateLimits.of(5_000);
 
         return KotatsuParser.withRateLimit(rateLimits, parser);
