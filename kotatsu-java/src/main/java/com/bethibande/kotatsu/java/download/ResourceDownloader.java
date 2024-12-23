@@ -60,7 +60,12 @@ public class ResourceDownloader {
     }
 
     public MangaResource getPage(final MangaPage page) {
-        return httpGet(page.url);
+        final String url = page.url;
+        if (url.startsWith("http") || url.startsWith("https")) {
+            return httpGet(page.url);
+        }
+
+        return httpGet(parser.getPageUrl(page));
     }
 
 }
