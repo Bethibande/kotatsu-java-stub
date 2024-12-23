@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.bethibande"
-version = "21.3"
+version = "21.4"
 
 repositories {
     mavenCentral()
@@ -21,6 +21,9 @@ dependencies {
     api("com.squareup.okhttp3:okhttp:4.12.0")
 
     implementation(projects.kotatsuKotlin)
+
+    implementation("com.google.auto.service:auto-service:1.1.1")
+    annotationProcessor("com.google.auto.service:auto-service:1.1.1")
 }
 
 tasks.test {

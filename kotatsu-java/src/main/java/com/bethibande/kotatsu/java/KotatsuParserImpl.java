@@ -2,6 +2,7 @@ package com.bethibande.kotatsu.java;
 
 import com.bethibande.kotatsu.context.MangaLoaderContextImpl;
 import com.bethibande.kotatsu.java.coroutines.CoroutineHelper;
+import com.bethibande.kotatsu.java.custom.CustomParsers;
 import okhttp3.Headers;
 import org.koitharu.kotatsu.parsers.MangaLoaderContext;
 import org.koitharu.kotatsu.parsers.MangaParser;
@@ -24,10 +25,15 @@ public class KotatsuParserImpl implements KotatsuParser {
     public static KotatsuParser getInstance(MangaParserSource source) {
         LOCK.lock();
         try {
-            return PARSERS.computeIfAbsent(source, KotatsuParserImpl::new);
+            return PARSERS.computeIfAbsent(source, KotatsuParserImpl::createInstance);
         } finally {
             LOCK.unlock();
         }
+    }
+
+    private static KotatsuParser createInstance(MangaParserSource source) {
+        return CustomParsers.getInstance(source)
+                .orElseGet(() -> new KotatsuParserImpl(source));
     }
 
     private final MangaParser parser;

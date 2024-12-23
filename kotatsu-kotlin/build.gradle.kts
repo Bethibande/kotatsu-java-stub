@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.bethibande"
-version = "21.3"
+version = "21.4"
 
 description = "Kotlin utilities needed to use the kotatsu-parsers library."
 
