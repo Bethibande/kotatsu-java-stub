@@ -2,13 +2,11 @@ package com.bethibande.kotatsu.java.ratelimit;
 
 import com.bethibande.kotatsu.java.KotatsuParser;
 import okhttp3.Headers;
-import org.koitharu.kotatsu.parsers.MangaLoaderContext;
 import org.koitharu.kotatsu.parsers.config.ConfigKey.Domain;
 import org.koitharu.kotatsu.parsers.config.MangaSourceConfig;
 import org.koitharu.kotatsu.parsers.model.*;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -18,10 +16,10 @@ import java.util.concurrent.atomic.AtomicLong;
  * A wrapper implementation of {@code KotatsuParser} that enforces rate limits on various endpoints.
  * This class ensures that requests to specific functionalities are throttled based on predefined cooldown times.
  * The rate-limiting logic is applied to prevent overloading the system or violating external service policies.
- *
+ * <p>
  * This implementation delegates actual parsing operations to a specified {@code KotatsuParser},
  * while applying rate-limiting rules according to the provided {@code RateLimits}.
- *
+ * <p>
  * Thread-safe behavior is ensured using {@code ConcurrentMap} and atomic operations.
  */
 public class RateLimitedKotatsuParser implements KotatsuParser {
@@ -52,11 +50,6 @@ public class RateLimitedKotatsuParser implements KotatsuParser {
     }
 
     @Override
-    public MangaLoaderContext getContext() {
-        return delegate.getContext();
-    }
-
-    @Override
     public Set<SortOrder> getAvailableSortOrders() {
         return delegate.getAvailableSortOrders();
     }
@@ -69,11 +62,6 @@ public class RateLimitedKotatsuParser implements KotatsuParser {
     @Override
     public Domain getConfigKeyDomain() {
         return delegate.getConfigKeyDomain();
-    }
-
-    @Override
-    public SortOrder getDefaultSortOrder() {
-        return delegate.getDefaultSortOrder();
     }
 
     @Override
@@ -131,10 +119,5 @@ public class RateLimitedKotatsuParser implements KotatsuParser {
     @Override
     public MangaParserSource getSource() {
         return delegate.getSource();
-    }
-
-    @Override
-    public Locale getSourceLocale() {
-        return delegate.getSourceLocale();
     }
 }

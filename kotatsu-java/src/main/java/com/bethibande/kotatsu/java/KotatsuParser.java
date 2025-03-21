@@ -3,13 +3,11 @@ package com.bethibande.kotatsu.java;
 import com.bethibande.kotatsu.java.ratelimit.RateLimitedKotatsuParser;
 import com.bethibande.kotatsu.java.ratelimit.RateLimits;
 import okhttp3.Headers;
-import org.koitharu.kotatsu.parsers.MangaLoaderContext;
 import org.koitharu.kotatsu.parsers.config.ConfigKey.Domain;
 import org.koitharu.kotatsu.parsers.config.MangaSourceConfig;
 import org.koitharu.kotatsu.parsers.model.*;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -31,15 +29,11 @@ public interface KotatsuParser {
         return new RateLimitedKotatsuParser(RateLimits.of(rateLimit), delegate);
     }
 
-    MangaLoaderContext getContext();
-
     Set<SortOrder> getAvailableSortOrders();
 
     MangaSourceConfig getConfig();
 
     Domain getConfigKeyDomain();
-
-    SortOrder getDefaultSortOrder();
 
     Manga getDetails(final Manga manga);
 
@@ -60,7 +54,5 @@ public interface KotatsuParser {
     Headers getRequestHeaders();
 
     MangaParserSource getSource();
-
-    Locale getSourceLocale();
 
 }

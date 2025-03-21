@@ -4,13 +4,15 @@ import com.bethibande.kotatsu.context.MangaLoaderContextImpl;
 import com.bethibande.kotatsu.java.coroutines.CoroutineHelper;
 import com.bethibande.kotatsu.java.custom.CustomParsers;
 import okhttp3.Headers;
-import org.koitharu.kotatsu.parsers.MangaLoaderContext;
 import org.koitharu.kotatsu.parsers.MangaParser;
 import org.koitharu.kotatsu.parsers.config.ConfigKey.Domain;
 import org.koitharu.kotatsu.parsers.config.MangaSourceConfig;
 import org.koitharu.kotatsu.parsers.model.*;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.WeakHashMap;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -43,11 +45,6 @@ public class KotatsuParserImpl implements KotatsuParser {
     }
 
     @Override
-    public MangaLoaderContext getContext() {
-        return parser.getContext();
-    }
-
-    @Override
     public Set<SortOrder> getAvailableSortOrders() {
         return parser.getAvailableSortOrders();
     }
@@ -60,11 +57,6 @@ public class KotatsuParserImpl implements KotatsuParser {
     @Override
     public Domain getConfigKeyDomain() {
         return parser.getConfigKeyDomain();
-    }
-
-    @Override
-    public SortOrder getDefaultSortOrder() {
-        return parser.getDefaultSortOrder();
     }
 
     @Override
@@ -115,11 +107,6 @@ public class KotatsuParserImpl implements KotatsuParser {
     @Override
     public MangaParserSource getSource() {
         return parser.getSource();
-    }
-
-    @Override
-    public Locale getSourceLocale() {
-        return parser.getSourceLocale();
     }
 
 }

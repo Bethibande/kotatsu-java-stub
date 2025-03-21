@@ -12,8 +12,8 @@ repositories {
 }
 
 dependencies {
-    implementation("com.bethibande:kotatsu-kotlin:21.5")
-    implementation("com.bethibande:kotatsu-java:21.5")
+    implementation("com.bethibande:kotatsu-kotlin:21.6")
+    implementation("com.bethibande:kotatsu-java:21.6")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0")
 }
 ```
