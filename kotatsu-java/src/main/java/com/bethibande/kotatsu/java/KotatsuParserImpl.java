@@ -8,6 +8,7 @@ import org.koitharu.kotatsu.parsers.MangaParser;
 import org.koitharu.kotatsu.parsers.config.ConfigKey.Domain;
 import org.koitharu.kotatsu.parsers.config.MangaSourceConfig;
 import org.koitharu.kotatsu.parsers.model.*;
+import org.koitharu.kotatsu.parsers.model.search.MangaSearchQuery;
 
 import java.util.List;
 import java.util.Map;
@@ -79,9 +80,8 @@ public class KotatsuParserImpl implements KotatsuParser {
         return CoroutineHelper.callCoroutineSync(parser::getFilterOptions);
     }
 
-    @Override
-    public List<Manga> getList(final int i, final SortOrder sortOrder, final MangaListFilter filter) {
-        return CoroutineHelper.callCoroutineSync(continuation -> parser.getList(i, sortOrder, filter, continuation));
+    public List<Manga> getList(final MangaSearchQuery query) {
+        return CoroutineHelper.callCoroutineSync(continuation -> parser.getList(query, continuation));
     }
 
     @Override

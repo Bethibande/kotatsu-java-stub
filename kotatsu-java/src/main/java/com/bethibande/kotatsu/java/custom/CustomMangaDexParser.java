@@ -3,9 +3,8 @@ package com.bethibande.kotatsu.java.custom;
 import com.bethibande.kotatsu.java.KotatsuParserImpl;
 import com.google.auto.service.AutoService;
 import org.koitharu.kotatsu.parsers.model.Manga;
-import org.koitharu.kotatsu.parsers.model.MangaListFilter;
 import org.koitharu.kotatsu.parsers.model.MangaParserSource;
-import org.koitharu.kotatsu.parsers.model.SortOrder;
+import org.koitharu.kotatsu.parsers.model.search.MangaSearchQuery;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,8 +20,8 @@ public class CustomMangaDexParser extends KotatsuParserImpl implements CustomPar
     }
 
     @Override
-    public List<Manga> getList(final int offset, final SortOrder sortOrder, final MangaListFilter filter) {
-        if (offset + PAGE_SIZE > MAX_QUERY_WINDOW) return Collections.emptyList();
-        return super.getList(offset, sortOrder, filter);
+    public List<Manga> getList(final MangaSearchQuery query) {
+        if (query.offset + PAGE_SIZE > MAX_QUERY_WINDOW) return Collections.emptyList();
+        return super.getList(query);
     }
 }

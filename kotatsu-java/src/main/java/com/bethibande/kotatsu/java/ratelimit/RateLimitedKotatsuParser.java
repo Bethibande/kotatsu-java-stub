@@ -5,6 +5,7 @@ import okhttp3.Headers;
 import org.koitharu.kotatsu.parsers.config.ConfigKey.Domain;
 import org.koitharu.kotatsu.parsers.config.MangaSourceConfig;
 import org.koitharu.kotatsu.parsers.model.*;
+import org.koitharu.kotatsu.parsers.model.search.MangaSearchQuery;
 
 import java.util.List;
 import java.util.Set;
@@ -88,9 +89,9 @@ public class RateLimitedKotatsuParser implements KotatsuParser {
     }
 
     @Override
-    public List<Manga> getList(final int i, final SortOrder sortOrder, final MangaListFilter filter) {
+    public List<Manga> getList(final MangaSearchQuery query) {
         enforceCooldown("list", rateLimits.list());
-        return delegate.getList(i, sortOrder, filter);
+        return delegate.getList(query);
     }
 
     @Override

@@ -5,9 +5,9 @@ import com.bethibande.kotatsu.java.download.MangaResource;
 import com.bethibande.kotatsu.java.download.ResourceDownloader;
 import com.bethibande.kotatsu.java.ratelimit.RateLimits;
 import org.koitharu.kotatsu.parsers.model.Manga;
-import org.koitharu.kotatsu.parsers.model.MangaListFilter;
 import org.koitharu.kotatsu.parsers.model.MangaParserSource;
 import org.koitharu.kotatsu.parsers.model.SortOrder;
+import org.koitharu.kotatsu.parsers.model.search.MangaSearchQuery;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
@@ -49,7 +49,10 @@ public class FilterWorkingSources {
             current++;
             try {
                 final KotatsuParser parser = createParser(value);
-                final List<Manga> mangas = parser.getList(0, SortOrder.ADDED, MangaListFilter.getEMPTY());
+                final List<Manga> mangas = parser.getList(new MangaSearchQuery.Builder()
+                        .order(SortOrder.ADDED)
+                        .offset(0)
+                        .build());
                 final Manga manga = mangas.getFirst();
 
                 final Manga detailedManga = parser.getDetails(manga);

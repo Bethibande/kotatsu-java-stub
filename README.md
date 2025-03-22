@@ -12,8 +12,8 @@ repositories {
 }
 
 dependencies {
-    implementation("com.bethibande:kotatsu-kotlin:21.6")
-    implementation("com.bethibande:kotatsu-java:21.6")
+    implementation("com.bethibande:kotatsu-kotlin:21.7")
+    implementation("com.bethibande:kotatsu-java:21.7")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0")
 }
 ```
@@ -31,7 +31,11 @@ public static void main(String[] args) throws IOException {
     final KotatsuParser parser = createParser(MangaParserSource.MANGADEX);
 
     // Note that operations like getList are performed in a blocking manner and are meant to run on virtual threads for peak performance.
-    final List<Manga> mangas = parser.getList(0, SortOrder.ADDED, MangaListFilter.getEMPTY());
+    final List<Manga> mangas = parser.getList(new MangaSearchQuery.Builder()
+            .order(SortOrder.ADDED)
+            .offset(0)
+            .build());
+
     for (final Manga manga : mangas) {
         System.out.println(manga);
     }
