@@ -2,6 +2,7 @@ package com.bethibande.kotatsu.java.ratelimit;
 
 import com.bethibande.kotatsu.java.KotatsuParser;
 import okhttp3.Headers;
+import org.koitharu.kotatsu.parsers.MangaParserAuthProvider;
 import org.koitharu.kotatsu.parsers.config.ConfigKey.Domain;
 import org.koitharu.kotatsu.parsers.config.MangaSourceConfig;
 import org.koitharu.kotatsu.parsers.model.*;
@@ -63,6 +64,16 @@ public class RateLimitedKotatsuParser implements KotatsuParser {
     @Override
     public Domain getConfigKeyDomain() {
         return delegate.getConfigKeyDomain();
+    }
+
+    @Override
+    public String getDomain() {
+        return delegate.getDomain();
+    }
+
+    @Override
+    public MangaParserAuthProvider getAuthorizationProvider() {
+        return delegate.getAuthorizationProvider();
     }
 
     @Override

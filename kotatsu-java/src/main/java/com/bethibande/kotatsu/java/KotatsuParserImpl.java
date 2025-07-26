@@ -5,6 +5,7 @@ import com.bethibande.kotatsu.java.coroutines.CoroutineHelper;
 import com.bethibande.kotatsu.java.custom.CustomParsers;
 import okhttp3.Headers;
 import org.koitharu.kotatsu.parsers.MangaParser;
+import org.koitharu.kotatsu.parsers.MangaParserAuthProvider;
 import org.koitharu.kotatsu.parsers.config.ConfigKey.Domain;
 import org.koitharu.kotatsu.parsers.config.MangaSourceConfig;
 import org.koitharu.kotatsu.parsers.model.*;
@@ -58,6 +59,16 @@ public class KotatsuParserImpl implements KotatsuParser {
     @Override
     public Domain getConfigKeyDomain() {
         return parser.getConfigKeyDomain();
+    }
+
+    @Override
+    public String getDomain() {
+        return parser.getDomain();
+    }
+
+    @Override
+    public MangaParserAuthProvider getAuthorizationProvider() {
+        return parser.getAuthorizationProvider();
     }
 
     @Override

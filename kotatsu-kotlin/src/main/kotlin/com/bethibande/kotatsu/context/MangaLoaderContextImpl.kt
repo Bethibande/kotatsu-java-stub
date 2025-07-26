@@ -47,6 +47,12 @@ class MangaLoaderContextImpl : MangaLoaderContext() {
         }
     }
 
+    override suspend fun evaluateJs(baseUrl: String, script: String): String? = runInterruptible(Dispatchers.Default) {
+        QuackContext.create().use {
+            it.evaluate(script)?.toString()
+        }
+    }
+
     override fun getConfig(source: MangaSource): MangaSourceConfig = DefaultMangaSourceConfig()
 
     override fun getDefaultUserAgent(): String = UserAgents.FIREFOX_DESKTOP

@@ -3,6 +3,7 @@ package com.bethibande.kotatsu.java;
 import com.bethibande.kotatsu.java.ratelimit.RateLimitedKotatsuParser;
 import com.bethibande.kotatsu.java.ratelimit.RateLimits;
 import okhttp3.Headers;
+import org.koitharu.kotatsu.parsers.MangaParserAuthProvider;
 import org.koitharu.kotatsu.parsers.config.ConfigKey.Domain;
 import org.koitharu.kotatsu.parsers.config.MangaSourceConfig;
 import org.koitharu.kotatsu.parsers.model.*;
@@ -35,6 +36,10 @@ public interface KotatsuParser {
     MangaSourceConfig getConfig();
 
     Domain getConfigKeyDomain();
+
+    String getDomain();
+
+    MangaParserAuthProvider getAuthorizationProvider();
 
     Manga getDetails(final Manga manga);
 
