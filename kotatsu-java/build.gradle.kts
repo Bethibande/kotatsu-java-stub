@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.bethibande"
-version = "21.8"
+version = "21.9"
 
 repositories {
     mavenCentral()

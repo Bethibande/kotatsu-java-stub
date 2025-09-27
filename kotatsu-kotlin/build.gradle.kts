@@ -1,12 +1,12 @@
 plugins {
-    kotlin("jvm") version "2.0.20"
+    kotlin("jvm") version "2.2.10"
     `java-library`
     `maven-publish`
     signing
 }
 
 group = "com.bethibande"
-version = "21.8"
+version = "21.9"
 
 description = "Kotlin utilities needed to use the kotatsu-parsers library."
 
@@ -19,13 +19,13 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
-    implementation("com.github.KotatsuApp:kotatsu-parsers:5962efb7df")
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    implementation("com.squareup.okio:okio:3.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+    implementation("com.github.KotatsuApp:kotatsu-parsers:86b8642456")
+    implementation("com.squareup.okhttp3:okhttp:5.1.0")
+    implementation("com.squareup.okio:okio:3.16.0")
     implementation("io.webfolder:quickjs:1.1.0")
-    implementation("org.json:json:20240303")
-    implementation("androidx.collection:collection:1.4.4")
+    implementation("org.json:json:20250517")
+    implementation("androidx.collection:collection:1.5.0")
 }
 
 tasks.test {
