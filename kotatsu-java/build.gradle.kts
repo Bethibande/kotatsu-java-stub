@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.bethibande"
-version = "21.9"
+version = "21.10"
 
 repositories {
     mavenCentral()
@@ -17,7 +17,7 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 
-    api("com.github.KotatsuApp:kotatsu-parsers:5962efb7df")
+    api("com.github.KotatsuApp:kotatsu-parsers:8908031")
     api("com.squareup.okhttp3:okhttp:4.12.0")
 
     implementation(projects.kotatsuKotlin)

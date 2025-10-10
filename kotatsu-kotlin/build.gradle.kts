@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.bethibande"
-version = "21.9"
+version = "21.10"
 
 description = "Kotlin utilities needed to use the kotatsu-parsers library."
 
@@ -20,7 +20,7 @@ dependencies {
     testImplementation(kotlin("test"))
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
-    implementation("com.github.KotatsuApp:kotatsu-parsers:86b8642456")
+    implementation("com.github.KotatsuApp:kotatsu-parsers:8908031")
     implementation("com.squareup.okhttp3:okhttp:5.1.0")
     implementation("com.squareup.okio:okio:3.16.0")
     implementation("io.webfolder:quickjs:1.1.0")
