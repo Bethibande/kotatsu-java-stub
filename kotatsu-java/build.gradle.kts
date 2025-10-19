@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.bethibande"
-version = "21.10"
+version = "21.11"
 
 repositories {
     mavenCentral()
@@ -19,6 +19,7 @@ dependencies {
 
     api("com.github.KotatsuApp:kotatsu-parsers:8908031")
     api("com.squareup.okhttp3:okhttp:4.12.0")
+    api("org.openjdk.nashorn:nashorn-core:15.7")
 
     implementation(projects.kotatsuKotlin)
 
