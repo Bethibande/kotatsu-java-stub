@@ -9,7 +9,7 @@ class GZipInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val newRequest = chain.request().newBuilder()
-        newRequest.addHeader(CommonHeaders.CONTENT_ENCODING, "gzip")
+        newRequest.addHeader(CommonHeaders.ACCEPT_ENCODING, "gzip")
         return try {
             chain.proceed(newRequest.build())
         } catch (e: NullPointerException) {
